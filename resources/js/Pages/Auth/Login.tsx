@@ -1,11 +1,11 @@
 import Checkbox from '@/Components/Checkbox';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
+import { Button } from "@/Components/ui/button";
 
 export default function Login({
     status,
@@ -97,9 +97,9 @@ export default function Login({
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button className="ms-4" disabled={processing}>
                         Log in
-                    </PrimaryButton>
+                    </Button>
                 </div>
             </form>
         </GuestLayout>
