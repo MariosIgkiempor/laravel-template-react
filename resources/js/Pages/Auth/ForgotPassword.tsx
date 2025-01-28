@@ -1,9 +1,9 @@
 import InputError from '@/Components/InputError';
-import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { Button } from "@/Components/ui/button";
+import { Input } from "@/Components/ui/input";
 
 export default function ForgotPassword({ status }: { status?: string }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -33,13 +33,13 @@ export default function ForgotPassword({ status }: { status?: string }) {
             )}
 
             <form onSubmit={submit}>
-                <TextInput
+                <Input
                     id="email"
                     type="email"
                     name="email"
                     value={data.email}
                     className="mt-1 block w-full"
-                    isFocused={true}
+                    autoFocus={true}
                     onChange={(e) => setData('email', e.target.value)}
                 />
 
