@@ -1,5 +1,4 @@
 import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
 import { useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef, useState } from "react";
 import { Button, buttonVariants } from "@/Components/ui/button";
@@ -11,6 +10,7 @@ import {
     AlertDialogTitle, AlertDialogTrigger
 } from "@/Components/ui/alert-dialog";
 import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
 
 export default function DeleteUserForm({
                                            className = ""
@@ -31,10 +31,6 @@ export default function DeleteUserForm({
     } = useForm({
         password: ""
     });
-
-    const confirmUserDeletion = () => {
-        setConfirmingUserDeletion(true);
-    };
 
     const deleteUser: FormEventHandler = (e) => {
         e.preventDefault();
@@ -70,7 +66,7 @@ export default function DeleteUserForm({
             </header>
 
             <AlertDialog>
-                <AlertDialogTrigger>Delete account</AlertDialogTrigger>
+                <AlertDialogTrigger className={buttonVariants({variant: 'destructive'})}>Delete account</AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle>
@@ -82,11 +78,10 @@ export default function DeleteUserForm({
                     </AlertDialogHeader>
                     <form onSubmit={deleteUser}>
                         <div className="my-6">
-                            <InputLabel
+                            <Label
                                 htmlFor="password"
-                                value="Password"
                                 className="sr-only"
-                            />
+                            >Password</Label>
 
                             <Input
                                 id="password"
