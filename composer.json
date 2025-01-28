@@ -19,6 +19,7 @@
     "require-dev": {
         "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
         "laravel/breeze": "^2.3",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
@@ -27,6 +28,7 @@
         "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^3.7",
         "pestphp/pest-plugin-laravel": "^3.1",
+        "pestphp/pest-plugin-type-coverage": "^3.2",
         "rector/rector": "^2.0"
     },
     "autoload": {
@@ -82,14 +84,17 @@
             "@php vendor/bin/pint --test",
             "npx prettier --check resources/"
         ],
-        "test:types": "@php vendor/bin/pest --colors=always --type-coverage --memory-limit=512M --min=100",
-        "test:static-analysis": "@php vendor/bin/phpstan analyse --ansi --memory-limit=512M",
+        "test:types": [
+            "@php vendor/bin/pest --colors=always --type-coverage --memory-limit=512M --min=100",
+            "npx tsc"
+        ],
+        "test:stan": "@php vendor/bin/phpstan analyse --ansi --memory-limit=512M",
         "test:unit": "herd coverage vendor/bin/pest --colors=always --coverage --parallel --min=100 --compact --cache-directory /tmp/pest",
         "test": [
             "@test:refactor",
             "@test:format",
             "@test:types",
-            "@test:static-analysis",
+            "@test:stan",
             "@test:unit"
         ]
     },
