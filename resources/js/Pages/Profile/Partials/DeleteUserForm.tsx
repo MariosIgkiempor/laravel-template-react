@@ -17,7 +17,6 @@ export default function DeleteUserForm({
                                        }: {
     className?: string;
 }) {
-    const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef<HTMLInputElement>(null);
 
     const {
@@ -44,8 +43,6 @@ export default function DeleteUserForm({
     };
 
     const closeModal = () => {
-        setConfirmingUserDeletion(false);
-
         clearErrors();
         reset();
     };
