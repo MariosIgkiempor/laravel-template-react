@@ -1,42 +1,32 @@
-import InputError from "@/Components/InputError";
-import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
-import { FormEventHandler } from "react";
-import { Button } from "@/Components/ui/button";
-import { Checkbox } from "@/Components/ui/checkbox";
-import { Input } from "@/Components/ui/input";
-import { Label } from "@/Components/ui/label";
+import InputError from '@/Components/InputError'
+import { Button } from '@/Components/ui/button'
+import { Checkbox } from '@/Components/ui/checkbox'
+import { Input } from '@/Components/ui/input'
+import { Label } from '@/Components/ui/label'
+import GuestLayout from '@/Layouts/GuestLayout'
+import { Head, Link, useForm } from '@inertiajs/react'
+import { FormEventHandler } from 'react'
 
-export default function Login({
-                                  status,
-                                  canResetPassword
-                              }: {
-    status?: string;
-    canResetPassword: boolean;
-}) {
+export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
-        password: "",
-        remember: false as boolean
-    });
+        email: '',
+        password: '',
+        remember: false as boolean,
+    })
 
     const submit: FormEventHandler = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        post(route("login"), {
-            onFinish: () => reset("password")
-        });
-    };
+        post(route('login'), {
+            onFinish: () => reset('password'),
+        })
+    }
 
     return (
         <GuestLayout>
             <Head title="Log in" />
 
-            {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
-                    {status}
-                </div>
-            )}
+            {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
@@ -50,7 +40,7 @@ export default function Login({
                         className="mt-1 block w-full"
                         autoComplete="username"
                         autoFocus={true}
-                        onChange={(e) => setData("email", e.target.value)}
+                        onChange={(e) => setData('email', e.target.value)}
                     />
 
                     <InputError message={errors.email} className="mt-2" />
@@ -66,7 +56,7 @@ export default function Login({
                         value={data.password}
                         className="mt-1 block w-full"
                         autoComplete="current-password"
-                        onChange={(e) => setData("password", e.target.value)}
+                        onChange={(e) => setData('password', e.target.value)}
                     />
 
                     <InputError message={errors.password} className="mt-2" />
@@ -79,15 +69,13 @@ export default function Login({
                             checked={data.remember}
                             onCheckedChange={(newValue) => {
                                 if (newValue === 'indeterminate') {
-                                    return;
+                                    return
                                 }
 
-                                setData('remember', newValue);
+                                setData('remember', newValue)
                             }}
                         />
-                        <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">
-                            Remember me
-                        </span>
+                        <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
                     </label>
                 </div>
 
@@ -107,5 +95,5 @@ export default function Login({
                 </div>
             </form>
         </GuestLayout>
-    );
+    )
 }
