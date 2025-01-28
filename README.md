@@ -1,65 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## About the Template
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel application template focusing on 100% test & type coverage, and maximum static analysis.
 
-## About Laravel
+It is built on top of [Laravel Breeze](https://github.com/laravel/breeze) and includes the following tools pre-configured with sensible (strict) defaults:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [RectorPHP](https://github.com/rectorphp/rector) for automatic refactoring
+- [Larastan](https://github.com/nunomaduro/larastan) for static analysis
+- [Pint](https://github.com/laravel/pint) for code formatting
+- [PestPHP](https://pestphp.com) for testing
+    - [Type Coverage Plugin](https://github.com/pestphp/pest-plugin-type-coverage) for type-safe testing
+    - [Test Coverage](https://pestphp.com/docs/test-coverage)
+- [Prettier](https://prettier.io) for Typescript file formatting
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+It also includes [shadcn/ui](https://github.com/shadcn/ui) pre-configured.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Getting Started
 
-## Learning Laravel
+```bash
+cp .env.example .env
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Update the `.env` file with your `APP_NAME`, `APP_URL`, local database credentials.
+Feel free to change any other variables to fit your local environment needs.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+composer install
+npm install && npm run build
+touch database/database.sqlite
+php artisan key:generate
+php artisan migrate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+At this point, your application is ready to start developing.
 
-## Laravel Sponsors
+You can run `composer test`, which should yield a passing test suite, with 100% test and type coverage.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Tools
 
-### Premium Partners
+Tools are exposed as [Composer](https://getcomposer.org/) scripts.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+composer test                 # @test:refactor && @test:lint
+                              # && @test:types && @test:stan && @test:unit
 
-## Contributing
+# `composer test` will run the tools in the following order:
+composer test:refactor        # rector --dry-run
+composer test:lint            # pint --test && prettier --check resources/
+composer test:types           # tsc && pest --type-coverage --colors=always --memory-limit=512M --min=100
+composer test:stan            # phpstan analyse --ansi --memory-limit=512M
+composer test:unit            # pest --colors=always --coverage --parallel --min=100
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Tools are also individually exposed as separate scripts:
+composer format               # pint && prettier --write resources/
+composer format:php <file>    # pint <file>
+composer format:js <file>     # prettier --write <file> --cache
+composer refactor             # rector
+```
 
 ## License
 
