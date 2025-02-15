@@ -1,5 +1,5 @@
 import InputError from '@/Components/InputError'
-import { Button } from '@/Components/ui/button'
+import { Button, buttonVariants } from '@/Components/ui/button'
 import { Input } from '@/Components/ui/input'
 import { Label } from '@/Components/ui/label'
 import GuestLayout from '@/Layouts/GuestLayout'
@@ -96,10 +96,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                    >
+                    <Link href={route('login')} className={buttonVariants({ variant: 'ghost' })}>
                         Already registered?
                     </Link>
 

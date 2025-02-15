@@ -1,3 +1,5 @@
+import { buttonVariants } from '@/Components/ui/button'
+import { cn } from '@/lib/utils'
 import { InertiaLinkProps, Link } from '@inertiajs/react'
 
 export default function NavLink({
@@ -9,15 +11,17 @@ export default function NavLink({
     return (
         <Link
             {...props}
-            className={
-                'inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none ' +
-                (active
-                    ? 'border-indigo-400 text-gray-900 focus:border-indigo-700 dark:border-indigo-600 dark:text-gray-100'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 focus:border-gray-300 focus:text-gray-700 dark:text-gray-400 dark:hover:border-gray-700 dark:hover:text-gray-300 dark:focus:border-gray-700 dark:focus:text-gray-300') +
+            className={cn(
+                'inline-flex items-center border-b-2 pt-1 transition duration-150 ease-in-out focus:outline-none',
+                {
+                    'border-accent-foreground text-foreground focus:border-accent/80': active,
+                    'border-transparent text-muted-foreground hover:border-accent-foreground hover:text-foreground focus:border-accent-foreground focus:text-accent-foreground':
+                        !active,
+                },
                 className
-            }
+            )}
         >
-            {children}
+            <div className={buttonVariants({ variant: active ? 'secondary' : 'ghost' })}>{children}</div>
         </Link>
     )
 }

@@ -1,5 +1,5 @@
 import InputError from '@/Components/InputError'
-import { Button } from '@/Components/ui/button'
+import { Button, buttonVariants } from '@/Components/ui/button'
 import { Checkbox } from '@/Components/ui/checkbox'
 import { Input } from '@/Components/ui/input'
 import { Label } from '@/Components/ui/label'
@@ -63,7 +63,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                 </div>
 
                 <div className="mt-4 block">
-                    <label className="flex items-center">
+                    <Label className="flex items-center">
                         <Checkbox
                             name="remember"
                             checked={data.remember}
@@ -75,16 +75,13 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                                 setData('remember', newValue)
                             }}
                         />
-                        <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
-                    </label>
+                        <span className="ms-2 text-sm text-muted-foreground">Remember me</span>
+                    </Label>
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
                     {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
-                        >
+                        <Link href={route('password.request')} className={buttonVariants({ variant: 'ghost' })}>
                             Forgot your password?
                         </Link>
                     )}
