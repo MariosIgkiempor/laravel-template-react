@@ -2,10 +2,10 @@ import InputError from '@/Components/InputError'
 import { Button } from '@/Components/ui/button'
 import { Input } from '@/Components/ui/input'
 import { Label } from '@/Components/ui/label'
+import { cn } from '@/lib/utils'
 import { Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { FormEventHandler, useRef } from 'react'
-import { cn } from "@/lib/utils";
 
 export default function UpdatePasswordForm({ className = '' }: { className?: string }) {
     const passwordInput = useRef<HTMLInputElement>(null)
@@ -38,7 +38,7 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
     }
 
     return (
-        <form onSubmit={updatePassword} className={cn("mt-6 space-y-6", className)}>
+        <form onSubmit={updatePassword} className={cn('mt-6 space-y-6', className)}>
             <div>
                 <Label htmlFor="current_password">Current Password</Label>
 

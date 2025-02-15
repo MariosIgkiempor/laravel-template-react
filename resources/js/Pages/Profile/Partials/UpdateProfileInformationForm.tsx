@@ -2,10 +2,10 @@ import InputError from '@/Components/InputError'
 import { Button } from '@/Components/ui/button'
 import { Input } from '@/Components/ui/input'
 import { Label } from '@/Components/ui/label'
+import { cn } from '@/lib/utils'
 import { Transition } from '@headlessui/react'
 import { Link, useForm, usePage } from '@inertiajs/react'
 import { FormEventHandler } from 'react'
-import { cn } from "@/lib/utils";
 
 export default function UpdateProfileInformation({
     mustVerifyEmail,
@@ -30,7 +30,7 @@ export default function UpdateProfileInformation({
     }
 
     return (
-        <form onSubmit={submit} className={cn("mt-6 space-y-6", className)}>
+        <form onSubmit={submit} className={cn('mt-6 space-y-6', className)}>
             <div>
                 <Label htmlFor="name">Name</Label>
 
@@ -99,6 +99,5 @@ export default function UpdateProfileInformation({
                 </Transition>
             </div>
         </form>
-
-)
+    )
 }
