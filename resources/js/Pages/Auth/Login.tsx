@@ -26,7 +26,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
         <GuestLayout>
             <Head title="Log in" />
 
-            {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
+            {status && <div className="mb-4 text-sm font-medium text-success-foreground">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
@@ -75,7 +75,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
                                 setData('remember', newValue)
                             }}
                         />
-                        <span className="ms-2 text-sm text-muted-foreground">Remember me</span>
+                        <span className="ms-2 text-sm">Remember me</span>
                     </Label>
                 </div>
 

@@ -1,19 +1,20 @@
 import ApplicationLogo from '@/Components/ApplicationLogo'
 import { Link } from '@inertiajs/react'
 import { PropsWithChildren } from 'react'
+import { Card, CardContent, CardHeader } from "@/Components/ui/card";
 
 export default function Guest({ children }: PropsWithChildren) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 dark:bg-gray-900 sm:justify-center sm:pt-0">
+        <div className="flex min-h-screen flex-col items-center bg-muted pt-6 sm:justify-center sm:pt-0">
             <div>
                 <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
+                    <ApplicationLogo className="h-20 w-20 fill-current text-muted-foreground" />
                 </Link>
             </div>
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md dark:bg-gray-800 sm:max-w-md sm:rounded-lg">
+            <Card className={'w-full max-w-lg mt-8'}><CardHeader></CardHeader><CardContent>
                 {children}
-            </div>
+            </CardContent></Card>
         </div>
     )
 }

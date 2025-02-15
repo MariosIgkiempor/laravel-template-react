@@ -8,9 +8,7 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 
 export default function Edit({ mustVerifyEmail, status }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
-        <AuthenticatedLayout
-            header={<h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">Profile</h2>}
-        >
+        <AuthenticatedLayout header={<h2 className="text-xl font-semibold leading-tight text-foreground">Profile</h2>}>
             <Head title="Profile" />
 
             <div className="py-12">

@@ -11,14 +11,14 @@ export default function Welcome({
     return (
         <>
             <Head title="Welcome" />
-            <div className="bg-background text-muted-foreground">
+            <div className="bg-background">
                 <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-primary selection:text-background">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                         <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
                             <div className="flex lg:col-start-2 lg:justify-center">
                                 <ApplicationLogo className={'size-12 text-primary-foreground'} />
                             </div>
-                            <nav className="-mx-3 flex flex-1 justify-end">
+                            <nav className="-mx-3 flex flex-1 justify-end gap-3">
                                 {auth.user ? (
                                     <Link href={route('dashboard')} className={buttonVariants({ variant: 'outline' })}>
                                         Dashboard
@@ -30,7 +30,7 @@ export default function Welcome({
                                         </Link>
                                         <Link
                                             href={route('register')}
-                                            className={buttonVariants({ variant: 'outline' })}
+                                            className={buttonVariants({ variant: 'default' })}
                                         >
                                             Register
                                         </Link>
